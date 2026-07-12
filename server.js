@@ -3,6 +3,9 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 
+import importRoutes from "./routes/importRoutes.js";
+
+
 dotenv.config();
 
 const app = express();
@@ -18,6 +21,9 @@ mongoose.connect(process.env.MONGO_URI)
 app.get("/", (req, res) => {
   res.send("Backend is running!");
 });
+
+app.use("/api/import", importRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
