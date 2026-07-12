@@ -3,6 +3,24 @@ import Lead from "../models/Lead.js";
 import { readExcel } from "../services/excelService.js";
 import { processBatch } from "../services/geminiService.js";
 
+export const getLeadsByImport = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const leads = await Lead.find({ importId: id }).lean();
+
+    return res.status(200).json({
+      success: true,
+      data: leads,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 export const getImports = async (req, res) => {
   try {
     const imports = await Import.find().sort({ createdAt: -1 }).lean();
