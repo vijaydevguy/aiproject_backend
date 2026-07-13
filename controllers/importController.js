@@ -1,5 +1,5 @@
 import Import from "../models/import.js";
-import Lead from "../models/Lead.js";
+import Lead from "../models/lead.js";
 import { readExcel } from "../services/excelService.js";
 import { processBatch } from "../services/geminiService.js";
 
